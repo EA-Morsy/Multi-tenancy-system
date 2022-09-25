@@ -1,0 +1,36 @@
+<?php
+
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Tymon\JWTAuth\Facades\JWTAuth;
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+
+Route::post('/register',[AuthController::class ,'register']);
+Route::post('/login',[AuthController::class ,'login']);
+
+
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::group(['middleware'=>['jwt.auth']], function (){
+    
+    Route::resource('/stores', StoreController::class);
+    Route::resource('/products', ProductController::class);
+    Route::resource('/users', UserController::class);
+});
