@@ -6,7 +6,8 @@ To Run The App>>>>
 2-Install all the dependencies using composer
 ->composer install
 
-"make sure that you've Created your database "
+"make sure that you've Created your database"
+
 3-Copy the example env file and make the required configuration changes in the .env file accoarding to your database credintials 
 
 4-Generate a new application key
